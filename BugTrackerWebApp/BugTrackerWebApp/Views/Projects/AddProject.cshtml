@@ -1,0 +1,20 @@
+﻿@model AddProjectViewModel
+@{
+    ViewData["Title"] = "AddProject";
+}
+
+<h1>AddProject</h1>
+
+<form asp-controller="Projects" asp-action="AddProject" method="post">
+    <div class="field-container">
+        <label class="form-label" asp-for="ProjectName">Project Name</label>
+        <input class="form-control" asp-for="ProjectName" />
+    </div>
+    <div class="field-container">
+        <label class="form-label" asp-for="StartDate">Project Start Date</label>
+        <input class="form-control" asp-for="StartDate" />
+    </div>
+    <div class="form-button">
+        <input type="submit" value="Submit" class="btn btn-primary" />
+    </div>
+</form>

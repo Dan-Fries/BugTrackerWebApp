@@ -4,14 +4,16 @@ using BugTrackerWebApp.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BugTrackerWebApp.Migrations
 {
     [DbContext(typeof(BugTrackerDbContext))]
-    partial class ProjectDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200327122749_UpdateSeedDataWithRoleDescription")]
+    partial class UpdateSeedDataWithRoleDescription
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -54,7 +56,7 @@ namespace BugTrackerWebApp.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "b528afca-f38a-416a-9a8e-d1b8bb8a5a61",
+                            ConcurrencyStamp = "24caa051-d084-4d58-aa2b-28307f957199",
                             Description = "Standard Administrator Role",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
@@ -62,7 +64,7 @@ namespace BugTrackerWebApp.Migrations
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "f52f02e7-e764-4834-99e3-440dee51777d",
+                            ConcurrencyStamp = "99ebc46f-2ad3-44f3-aac3-76101cd55ed6",
                             Description = "Default User Role",
                             Name = "User",
                             NormalizedName = "USER"
@@ -146,15 +148,15 @@ namespace BugTrackerWebApp.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e8a7d7b6-9d71-49b5-9d00-c9227a702be1",
+                            ConcurrencyStamp = "bc2a6336-74bc-4c38-adab-3c447c7da43a",
                             Email = "BTadmin@BTApp.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "BTADMIN@BTAPP.COM",
                             NormalizedUserName = "BTADMIN@BTAPP.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAECm2T/1KT3/CRl5gbAHOg+cSn9Fnh0XXzdNMORLM3urZyAYxjpoPENyey/w1H1Ab0w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOiVBmWHkTs4SQogKscSPvz7/+rDWNxrDgUkI5/lHDhQrdJBoIrs4dVHxuBNnptYBA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "acdc4c32-9cd3-4cc2-b800-c523aae75ad1",
+                            SecurityStamp = "551aa4b2-df3d-46eb-a601-bf6b129f56af",
                             TwoFactorEnabled = false,
                             UserName = "BTadmin@BTApp.com"
                         },
@@ -162,15 +164,15 @@ namespace BugTrackerWebApp.Migrations
                         {
                             Id = 2,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a6f988f3-3c48-4304-9f35-e566024450e0",
+                            ConcurrencyStamp = "7e341b58-e4fa-47f5-9448-e633ab88ab48",
                             Email = "BTuser@BTApp.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "BTUSER@BTAPP.COM",
                             NormalizedUserName = "BTUSER@BTAPP.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEBe75o5mx4Zs9LyEe1NbVmcZjKU5iY+keQXhy7L7nBhRwH84B0KZqNStcGns39ETlw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDY66gASkAGjbSJWz3M6aRZa4VUFZZ2P8esS3Fwx+PHkpDpJx6l7jM8X3Tdg9wsmCA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "3f6834e9-78d6-4c04-8132-c0322f558d7b",
+                            SecurityStamp = "b7355b16-76f1-4808-ab2b-4127b71c81a5",
                             TwoFactorEnabled = false,
                             UserName = "BTuser@BTApp.com"
                         });
@@ -224,21 +226,6 @@ namespace BugTrackerWebApp.Migrations
                     b.HasKey("ProjectId");
 
                     b.ToTable("Projects");
-                });
-
-            modelBuilder.Entity("BugTrackerWebApp.Models.UserProjects", b =>
-                {
-                    b.Property<int>("BTUserId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProjectId")
-                        .HasColumnType("int");
-
-                    b.HasKey("BTUserId", "ProjectId");
-
-                    b.HasIndex("ProjectId");
-
-                    b.ToTable("UserProjects");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -358,21 +345,6 @@ namespace BugTrackerWebApp.Migrations
                 {
                     b.HasOne("BugTrackerWebApp.Models.Project", null)
                         .WithMany("Bugs")
-                        .HasForeignKey("ProjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("BugTrackerWebApp.Models.UserProjects", b =>
-                {
-                    b.HasOne("BugTrackerWebApp.Models.BTUser", "BTUser")
-                        .WithMany("UserProjects")
-                        .HasForeignKey("BTUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BugTrackerWebApp.Models.Project", "Project")
-                        .WithMany("UserProjects")
                         .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

@@ -17,11 +17,15 @@ namespace BugTrackerWebApp.DAL
 
         public DbSet<Project> Projects { get; set; }
         public DbSet<Bug> Bugs { get; set; }
+        public DbSet<UserProjects> UserProjects { get; set; }
 
         // Used to seed database with data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            // Define Primary Key for UserProjects table
+            modelBuilder.Entity<UserProjects>().HasKey(upr => new { upr.BTUserId, upr.ProjectId });
 
             // Seed the database with Admin and User roles
             modelBuilder.Entity<BTRole>().HasData(
@@ -30,12 +34,14 @@ namespace BugTrackerWebApp.DAL
                     new BTRole {
                         Id = 1,
                         Name = "Admin",
-                        NormalizedName = "ADMIN"
+                        NormalizedName = "ADMIN",
+                        Description = "Standard Administrator Role"
                     },
                     new BTRole {
                         Id = 2,
                         Name = "User",
-                        NormalizedName = "USER"
+                        NormalizedName = "USER",
+                        Description = "Default User Role"
                     },
                 });
 

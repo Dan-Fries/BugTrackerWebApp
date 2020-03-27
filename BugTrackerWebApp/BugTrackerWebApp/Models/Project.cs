@@ -14,6 +14,7 @@ namespace BugTrackerWebApp.Models
         public DateTime StartDate { get; set; }
         public DateTime DateCreated { get; set; }
         public ICollection<Bug> Bugs { get; set; }
+        public ICollection<UserProjects> UserProjects { get; set; }
 
     }
 }

@@ -11,5 +11,7 @@ namespace BugTrackerWebApp.Models
         public BTUser() : base() { }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+
+        public ICollection<UserProjects> UserProjects { get; set; }
     }
 }

@@ -67,5 +67,64 @@ namespace BugTrackerWebApp.Controllers
 
             return View(roles);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> EditRole(string id)
+        {
+            BTRole role = await roleMgr.FindByIdAsync(id);
+
+            if (role == null)
+            {
+                ViewBag.ErrorMessage = $"Role with Id = {id} does not exists please try again";
+                return RedirectToAction("ListRoles", "Admin");
+            }
+
+            EditRoleViewModel vm = new EditRoleViewModel
+            {
+                Id = role.Id,
+                Name = role.Name,
+                Description = role.Description,
+
+            };
+
+            foreach (BTUser user in userMgr.Users.ToList())
+            {
+                if (await userMgr.IsInRoleAsync(user, role.Name))
+                {
+                    vm.Users.Add(user.UserName);
+                }
+            }
+
+            return View(vm);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditRole(EditRoleViewModel vm)
+        {
+            BTRole role = await roleMgr.FindByIdAsync(vm.Id.ToString());
+
+            if (role == null)
+            {
+                ViewBag.ErrorMessage = $"Role with Id = {vm.Id} does not exists please try again";
+                return RedirectToAction("ListRoles", "Admin");
+            }
+            else
+            {
+                role.Name = vm.Name;
+                IdentityResult result = await roleMgr.UpdateAsync(role);
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("ListRoles", "Admin");
+                }
+
+                foreach (IdentityError error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+
+                return View(vm);
+            }    
+        }
     }
 }

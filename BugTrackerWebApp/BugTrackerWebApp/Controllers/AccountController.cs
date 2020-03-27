@@ -11,19 +11,23 @@ namespace BugTrackerWebApp.Controllers
 {
     public class AccountController : Controller
     {
-        private UserManager<BTUser> userMgr { get; }
+        private readonly RoleManager<BTRole> roleMgr;
 
-        private SignInManager<BTUser> signInMgr { get; }
+        private readonly UserManager<BTUser> userMgr;
 
-        public AccountController(UserManager<BTUser> userManager, SignInManager<BTUser> signInManager)
+        private readonly SignInManager<BTUser> signInMgr;
+
+        public AccountController(UserManager<BTUser> userManager, SignInManager<BTUser> signInManager, RoleManager<BTRole> roleManager)
         {
             userMgr = userManager;
             signInMgr = signInManager;
+            this.roleMgr = roleManager;
         }
 
         [HttpPost]
         public async Task<IActionResult> Logout()
         {
+            // Sign the user out and redirect to the Index page
             await signInMgr.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
@@ -34,6 +38,7 @@ namespace BugTrackerWebApp.Controllers
             return View();
         }
 
+        // Remote validation for Email in registration form, will live update the error message if a user tries to register an email that already exists
         [AcceptVerbs("Get", "Post")]
         public async Task<IActionResult> IsEmailInUse(string email)
         {
@@ -65,9 +70,12 @@ namespace BugTrackerWebApp.Controllers
                 // Create a new user using the user manager service
                 IdentityResult result = await userMgr.CreateAsync(user, vm.Password);
 
-                // On a succesful registration log the user in
+                // On a succesful registration add the user to the default user role and then log the user in
                 if (result.Succeeded)
                 {
+                    user = await userMgr.FindByNameAsync(user.UserName);
+                    BTRole role = await roleMgr.FindByNameAsync("User");
+                    await userMgr.AddToRoleAsync(user, role.Name);
                     await signInMgr.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("index", "home");
                 }

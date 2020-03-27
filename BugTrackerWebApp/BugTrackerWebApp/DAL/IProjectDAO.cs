@@ -9,6 +9,8 @@ namespace BugTrackerWebApp.DAL
     public interface IProjectDAO
     {
         IList<Project> GetAllProjects();
-        int AddProject(Project project);
+
+        IList<Project> GetProjectsForUserId(int id);
+        int AddProject(Project project, int userId);
     }
 }

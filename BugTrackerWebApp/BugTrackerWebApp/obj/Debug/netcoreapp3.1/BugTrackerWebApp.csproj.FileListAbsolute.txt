@@ -339,3 +339,4 @@ E:\Repos\bugtrackerwebapp\BugTrackerWebApp\BugTrackerWebApp\obj\Debug\netcoreapp
 E:\Repos\bugtrackerwebapp\BugTrackerWebApp\BugTrackerWebApp\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Index.cshtml.g.cs
 E:\Repos\bugtrackerwebapp\BugTrackerWebApp\BugTrackerWebApp\obj\Debug\netcoreapp3.1\Razor\Views\Admin\AddRole.cshtml.g.cs
 E:\Repos\bugtrackerwebapp\BugTrackerWebApp\BugTrackerWebApp\obj\Debug\netcoreapp3.1\Razor\Views\Admin\ListRoles.cshtml.g.cs
+E:\Repos\bugtrackerwebapp\BugTrackerWebApp\BugTrackerWebApp\obj\Debug\netcoreapp3.1\Razor\Views\Admin\EditRole.cshtml.g.cs

@@ -3,10 +3,10 @@
 
     <ul class="navbar-nav flex-grow-1">
         <li class="nav-item">
-            <a class="nav-link" asp-controller="Projects" asp-action="Index">Projects</a>
+            <a class="nav-link" asp-controller="Projects" asp-action="Index">My Projects</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" asp-controller="Projects" asp-action="AddProject">Add Project</a>
+            <a class="nav-link" asp-controller="Projects" asp-action="AddProject">Add New Project</a>
         </li>
         @if (User.IsInRole("Admin"))
         {

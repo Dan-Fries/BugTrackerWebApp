@@ -1,5 +1,6 @@
 ﻿using BugTrackerWebApp.DAL;
 using BugTrackerWebApp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -23,12 +24,14 @@ namespace BugTrackerWebApp.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult AddProject()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult AddProject(AddProjectViewModel vm)
         {
             projectDAO.AddProject(vm.project);

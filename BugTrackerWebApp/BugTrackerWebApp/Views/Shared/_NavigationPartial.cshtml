@@ -1,0 +1,17 @@
+﻿@inject SignInManager<BTUser> SignInManager
+@inject UserManager<BTUser> UserManager
+
+    <ul class="navbar-nav flex-grow-1">
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="Projects" asp-action="Index">Projects</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="Projects" asp-action="AddProject">Add Project</a>
+        </li>
+        @if (User.IsInRole("Admin"))
+        {
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="Admin" asp-action="Index">Administration</a>
+            </li>
+        }
+    </ul>

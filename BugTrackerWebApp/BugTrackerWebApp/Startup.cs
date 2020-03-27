@@ -80,10 +80,9 @@ namespace BugTrackerWebApp
 
             app.UseRouting();
 
-            app.UseAuthorization();
-
-            // Use Authentication for Identity Services
+            // Add Authentication and Authorization 
             app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

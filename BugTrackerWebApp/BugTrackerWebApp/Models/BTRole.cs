@@ -10,5 +10,6 @@ namespace BugTrackerWebApp.Models
     {
         public BTRole() : base() { }
         
+        public string Description { get; set; }
     }
 }

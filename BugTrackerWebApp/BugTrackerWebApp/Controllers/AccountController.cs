@@ -34,6 +34,22 @@ namespace BugTrackerWebApp.Controllers
             return View();
         }
 
+        [AcceptVerbs("Get", "Post")]
+        public async Task<IActionResult> IsEmailInUse(string email)
+        {
+            var user = await userMgr.FindByEmailAsync(email);
+
+            if (user == null)
+            {
+                return Json(true);
+            }
+            else
+            {
+                return Json($"Email {email} is already in use");
+            }
+        }
+
+
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel vm)
         {
@@ -73,17 +89,25 @@ namespace BugTrackerWebApp.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(LoginViewModel vm)
+        public async Task<IActionResult> Login(LoginViewModel vm, string returnUrl)
         {
             if (ModelState.IsValid)
             {
                 // Attempt to sign in the user using the sign in manager
                 var result = await signInMgr.PasswordSignInAsync(vm.Email, vm.Password, vm.RememberMe, false);
 
-                // On a succesful registration log the user in
+                // If the login was succesful redirect the user to the appropriate page
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("index", "home");
+                    // If a redirect URL exists redirect the user to that page otherwise redirect to home index
+                    if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+                    {
+                        return LocalRedirect(returnUrl);
+                    }
+                    else
+                    {
+                        return RedirectToAction("index", "home");
+                    }
                 }
 
                 // On an unsuccesful login add an error message to ModelState

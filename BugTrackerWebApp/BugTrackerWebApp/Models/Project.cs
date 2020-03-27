@@ -13,7 +13,9 @@ namespace BugTrackerWebApp.Models
         [Column(TypeName = "Date")]
         public DateTime StartDate { get; set; }
         public DateTime DateCreated { get; set; }
+        // Add a reference to the Bugs table so entity framework can build the proper foreign key relationship
         public ICollection<Bug> Bugs { get; set; }
+        // Add a reference to the UserProjects table so entity framework can build the proper foreign key relationship
         public ICollection<UserProjects> UserProjects { get; set; }
 
     }

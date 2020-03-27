@@ -51,12 +51,14 @@ namespace BugTrackerWebApp.Controllers
                     return RedirectToAction("ListRoles", "Admin");
                 }
 
+                // iterate over all errors and add them to ModelState
                 foreach (IdentityError error in result.Errors)
                 {
                     ModelState.AddModelError("", error.Description);
                 }
             }
 
+            // If the role add failed repost to the View with existing data from the View Model
             return View(vm);
         }
 
@@ -73,12 +75,14 @@ namespace BugTrackerWebApp.Controllers
         {
             BTRole role = await roleMgr.FindByIdAsync(id);
 
+            // if role is null the supplied id was not found in the role table so add an error message and redirect to ListRoles
             if (role == null)
             {
                 ViewBag.ErrorMessage = $"Role with Id = {id} does not exists please try again";
                 return RedirectToAction("ListRoles", "Admin");
             }
 
+            // build a new view model and populate data with information from the valid role
             EditRoleViewModel vm = new EditRoleViewModel
             {
                 Id = role.Id,
@@ -87,6 +91,7 @@ namespace BugTrackerWebApp.Controllers
 
             };
 
+            // Get a list of users that have the selected role by iterating over each user and checking if they have the role, add all matches to the View Model Users list
             foreach (BTUser user in userMgr.Users.ToList())
             {
                 if (await userMgr.IsInRoleAsync(user, role.Name))
@@ -108,11 +113,16 @@ namespace BugTrackerWebApp.Controllers
                 ViewBag.ErrorMessage = $"Role with Id = {vm.Id} does not exists please try again";
                 return RedirectToAction("ListRoles", "Admin");
             }
-            else
+            else // If the role exists
             {
+                // Set the name and description of the role object to the values entered in the form
                 role.Name = vm.Name;
+                role.Description = vm.Description;
+
+                // Use role manager to update the role with the new information
                 IdentityResult result = await roleMgr.UpdateAsync(role);
 
+                // If the role was updated succesfully redirect to the List of Roles otherwise add errors to the ModelState and repost the View
                 if (result.Succeeded)
                 {
                     return RedirectToAction("ListRoles", "Admin");

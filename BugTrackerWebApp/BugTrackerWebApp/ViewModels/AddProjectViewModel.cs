@@ -13,6 +13,7 @@ namespace BugTrackerWebApp.Models
         [DataType(DataType.Date)]
         public DateTime StartDate { get; set; }
 
+        // Derived property that allows us to get a Project object from the view model
         public Project project
         {
             get

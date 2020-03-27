@@ -24,7 +24,10 @@ namespace BugTrackerWebApp.Controllers
 
         public IActionResult Index()
         {
+            // Get the userId through the User Manager
             int userId = Convert.ToInt32(userMgr.GetUserId(HttpContext.User));
+
+            // Use the User Id to build a list of projects that the user is a part of
             return View(projectDAO.GetProjectsForUserId(userId));
         }
 
@@ -37,9 +40,10 @@ namespace BugTrackerWebApp.Controllers
         [HttpPost]
         public IActionResult AddProject(AddProjectViewModel vm)
         {
+            // Get the userId through user manager and call the Add Project method to create a new project and add the required information to the association table
             int userId = Convert.ToInt32(userMgr.GetUserId(HttpContext.User));
             projectDAO.AddProject(vm.project, userId);
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Projects");
         }
     }
 }

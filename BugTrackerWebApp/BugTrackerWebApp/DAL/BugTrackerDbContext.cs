@@ -24,7 +24,7 @@ namespace BugTrackerWebApp.DAL
         {
             base.OnModelCreating(modelBuilder);
 
-            // Define Primary Key for UserProjects table
+            // Define Primary Key for UserProjects association table
             modelBuilder.Entity<UserProjects>().HasKey(upr => new { upr.BTUserId, upr.ProjectId });
 
             // Seed the database with Admin and User roles

@@ -8,6 +8,7 @@ namespace BugTrackerWebApp.ViewModels
 {
     public class EditRoleViewModel
     {
+        // In the constructor instantiate a list of strings to hold userNames
         public EditRoleViewModel()
         {
             Users = new List<string>();

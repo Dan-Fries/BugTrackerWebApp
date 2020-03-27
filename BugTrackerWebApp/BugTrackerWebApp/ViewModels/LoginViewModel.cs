@@ -16,6 +16,7 @@ namespace BugTrackerWebApp.ViewModels
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
+        // Boolean to determine whether the user should be logged in with a session cookie or a persistent cookie
         [Display(Name = "Remember me")]
         public bool RememberMe { get; set; }
     }

@@ -8,6 +8,7 @@ namespace BugTrackerWebApp.Models
 {
     public class BTUser : IdentityUser<int>
     {
+        public BTUser() : base() { }
         public string FirstName { get; set; }
         public string LastName { get; set; }
     }

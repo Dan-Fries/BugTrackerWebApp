@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -35,9 +36,12 @@ namespace BugTrackerWebApp
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            // Add Identity services to the project
-            services.AddIdentity<BTUser, BTUserRole>(options =>
+            // Add Identity services to the project and configure options
+            services.AddIdentity<BTUser, BTRole>(options =>
            {
+               options.Password.RequiredLength = 8;
+               options.Password.RequireNonAlphanumeric = false;
+               options.Password.RequiredUniqueChars = 3;
                options.User.RequireUniqueEmail = true;
            }).AddEntityFrameworkStores<BugTrackerDbContext>();
 
@@ -77,6 +81,7 @@ namespace BugTrackerWebApp
             app.UseRouting();
 
             app.UseAuthorization();
+
             // Use Authentication for Identity Services
             app.UseAuthentication();
 

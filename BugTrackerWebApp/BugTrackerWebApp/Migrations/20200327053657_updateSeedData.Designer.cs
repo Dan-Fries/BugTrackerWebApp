@@ -4,14 +4,16 @@ using BugTrackerWebApp.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BugTrackerWebApp.Migrations
 {
     [DbContext(typeof(BugTrackerDbContext))]
-    partial class ProjectDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200327053657_updateSeedData")]
+    partial class updateSeedData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,14 +53,14 @@ namespace BugTrackerWebApp.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "ca2d7eb5-6c9f-4869-b40c-0feced81c420",
+                            ConcurrencyStamp = "78485c1b-c827-4e23-bdea-1ed5d7285948",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "c256e419-4b05-4c9e-83cf-be0f0a32267a",
+                            ConcurrencyStamp = "28da1550-da6d-442a-897e-6d64bfceeb2c",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -141,15 +143,14 @@ namespace BugTrackerWebApp.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "cca64790-8b9c-46bf-9e42-a9f6d1c05e0e",
+                            ConcurrencyStamp = "850a614c-19d0-4f07-9db2-afa56a47ab8c",
                             Email = "BTadmin@BTApp.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "BTADMIN@BTAPP.COM",
                             NormalizedUserName = "BTADMIN@BTAPP.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEBWoYRwjjRDsxPiE1BFU/hpR2EgwRoh6xMqrgPJEA/rLfTrIA80ThDPjhM60QbhvUw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEn7qTORGJl9AutBOs5UrcCSfuGu6XFbSnVJ/8BQ0PZlzNBz1y8WWv3HmzfWmf3w4Q==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "c316e126-2897-4768-9a78-e7efe668bbc4",
                             TwoFactorEnabled = false,
                             UserName = "BTadmin@BTApp.com"
                         },
@@ -157,15 +158,14 @@ namespace BugTrackerWebApp.Migrations
                         {
                             Id = 2,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "fcf18137-2f9a-4e54-847b-342cf43db1b0",
+                            ConcurrencyStamp = "495996ed-2df4-484f-b223-a8a4805aed37",
                             Email = "BTuser@BTApp.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "BTUSER@BTAPP.COM",
                             NormalizedUserName = "BTUSER@BTAPP.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGEj80+Ux1rmQiP0qyYDtC6esMFLVNxgfuYHLYmWkGbqJAn9Q5Gm7g2Oau0dkE/nDg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPQ/KU0R08hE5kZjXLe2H3XpMJmTNScITxJ61T5M5Y3Ns85kJBUoJPh1RuQ8NBxhDg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "7eb2bbe9-d26d-4036-bbab-c78340865ad6",
                             TwoFactorEnabled = false,
                             UserName = "BTuser@BTApp.com"
                         });

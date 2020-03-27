@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace BugTrackerWebApp.Models
 {
-    public class BTUserRole : IdentityRole<int>
+    public class BTRole : IdentityRole<int>
     {
+        public BTRole() : base() { }
+        
     }
 }

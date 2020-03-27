@@ -334,3 +334,4 @@ E:\Repos\bugtrackerwebapp\BugTrackerWebApp\BugTrackerWebApp\bin\Debug\netcoreapp
 E:\Repos\bugtrackerwebapp\BugTrackerWebApp\BugTrackerWebApp\obj\Debug\netcoreapp3.1\BugTrackerWebApp.MvcApplicationPartsAssemblyInfo.cache
 E:\Repos\bugtrackerwebapp\BugTrackerWebApp\BugTrackerWebApp\obj\Debug\netcoreapp3.1\Razor\Views\Account\Register.cshtml.g.cs
 E:\Repos\bugtrackerwebapp\BugTrackerWebApp\BugTrackerWebApp\obj\Debug\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs
+E:\Repos\bugtrackerwebapp\BugTrackerWebApp\BugTrackerWebApp\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_LoginPartial.cshtml.g.cs

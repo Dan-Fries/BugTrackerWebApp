@@ -4,14 +4,16 @@ using BugTrackerWebApp.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BugTrackerWebApp.Migrations
 {
     [DbContext(typeof(BugTrackerDbContext))]
-    partial class ProjectDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200327035306_SeedUserRole")]
+    partial class SeedUserRole
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,14 +53,14 @@ namespace BugTrackerWebApp.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "ca2d7eb5-6c9f-4869-b40c-0feced81c420",
+                            ConcurrencyStamp = "87df726d-4988-4882-bc40-306838aa8bfe",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "c256e419-4b05-4c9e-83cf-be0f0a32267a",
+                            ConcurrencyStamp = "38676c53-fe1d-441a-80ae-60d60e1f2ae2",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -141,33 +143,31 @@ namespace BugTrackerWebApp.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "cca64790-8b9c-46bf-9e42-a9f6d1c05e0e",
+                            ConcurrencyStamp = "03bf94d1-f1e0-4aaf-b08a-e79653dbf0c5",
                             Email = "BTadmin@BTApp.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "BTADMIN@BTAPP.COM",
-                            NormalizedUserName = "BTADMIN@BTAPP.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEBWoYRwjjRDsxPiE1BFU/hpR2EgwRoh6xMqrgPJEA/rLfTrIA80ThDPjhM60QbhvUw==",
+                            NormalizedUserName = "TESTADMIN",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJ/lpmwpTOjtPemZ62hfzvIsirdNBh2Sh6Yw4hTW863sVz66P+Aec0TIuQaKmQAgfQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "c316e126-2897-4768-9a78-e7efe668bbc4",
                             TwoFactorEnabled = false,
-                            UserName = "BTadmin@BTApp.com"
+                            UserName = "TestAdmin"
                         },
                         new
                         {
                             Id = 2,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "fcf18137-2f9a-4e54-847b-342cf43db1b0",
+                            ConcurrencyStamp = "528903a7-9120-447b-a0f7-8d59d26afaa2",
                             Email = "BTuser@BTApp.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "BTUSER@BTAPP.COM",
-                            NormalizedUserName = "BTUSER@BTAPP.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGEj80+Ux1rmQiP0qyYDtC6esMFLVNxgfuYHLYmWkGbqJAn9Q5Gm7g2Oau0dkE/nDg==",
+                            NormalizedUserName = "TESTUSER",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKnOJlGxiMKJdrlbckHf5eFgcfQWAEcSth90izbSw2Vj3p8ODyV8hodETkObwNyLJQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "7eb2bbe9-d26d-4036-bbab-c78340865ad6",
                             TwoFactorEnabled = false,
-                            UserName = "BTuser@BTApp.com"
+                            UserName = "TestUser"
                         });
                 });
 
